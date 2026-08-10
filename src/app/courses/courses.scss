@@ -1,0 +1,97 @@
+@use '../../styles/variables' as vars;
+
+.layout {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+}
+
+.filters {
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-title {
+  color: vars.$color-text-dim;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: vars.$color-text;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+
+.course-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  align-content: start;
+}
+
+.course-card {
+  background: vars.$color-surface;
+  border: 0.5px solid vars.$color-border;
+  border-radius: 10px;
+  padding: 14px;
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: vars.$color-accent-soft;
+    color: vars.$color-accent;
+  }
+
+  .price {
+    font-size: 11px;
+    color: vars.$color-text-muted;
+
+    &.free {
+      color: vars.$color-free;
+    }
+  }
+
+  .title {
+    color: vars.$color-text;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+
+  .meta {
+    color: vars.$color-text-dim;
+    font-size: 12px;
+    margin: 0 0 12px;
+  }
+
+  .cta {
+    color: vars.$color-accent;
+    font-size: 12px;
+    text-decoration: none;
+  }
+}
+
+.empty-state {
+  color: vars.$color-text-dim;
+  font-size: 13px;
+  grid-column: 1 / -1;
+}
