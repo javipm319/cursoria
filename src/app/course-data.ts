@@ -1,18 +1,25 @@
 import { Service } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Course } from './course';
-import { COURSES } from './mock-courses';
+import { supabase } from './supabase-client';
 
 @Service()
 export class CourseData {
-  private courses = COURSES;
 
   getCourses(): Observable<Course[]> {
-    return of(this.courses);
+    return from(
+      supabase.from('courses').select('*')
+    ).pipe(
+      map(response => response.data as Course[])
+    );
   }
 
   getCourse(id: number): Observable<Course> {
-    const course = this.courses.find(c => c.id === id)!;
-    return of(course);
+    return from(
+      supabase.from('courses').select('*').eq('id', id).single()
+    ).pipe(
+      map(response => response.data as Course)
+    );
   }
 }
