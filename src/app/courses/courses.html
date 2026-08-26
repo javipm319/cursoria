@@ -33,19 +33,36 @@
     </div>
   </aside>
 
-  <div class="course-grid">
+  <div class="course-list">
     @for (course of filteredCourses(); track course.id) {
-      <div class="course-card">
-        <div class="card-top">
-          <span class="badge badge-{{course.category}}">{{course.category}}</span>
-          <span class="price" [class.free]="course.price === 0">
-            {{ course.price === 0 ? 'gratis' : course.price + '€' }}
-          </span>
+      <a class="course-row" [routerLink]="['/curso', course.id]">
+        <div class="thumb thumb-{{course.category}}">
+          {{ course.category === '3d' ? '3D' : course.category === 'ux' ? 'UX' : (course.category.charAt(0) | uppercase) }}
         </div>
-        <p class="title">{{course.title}}</p>
-        <p class="meta">{{course.platform}} · {{course.duration}} · {{course.level}}</p>
-        <a class="cta" [routerLink]="['/curso', course.id]">ver curso</a>
-      </div>
+        <div class="content">
+          <div class="top-line">
+            <span class="badge badge-{{course.category}}">{{course.category}}</span>
+            <span class="platform">{{course.platform}}</span>
+          </div>
+          <p class="title">{{course.title}}</p>
+          <p class="description">{{course.description}}</p>
+          <div class="meta">
+            <span>{{course.duration}}</span>
+            <span>·</span>
+            <span>{{course.level}}</span>
+            <span>·</span>
+            <span class="price" [class.free]="course.price === 0">
+              @if (course.price === 0) {
+                gratis
+              } @else if (course.platform === 'Udemy' || course.platform === 'Skillshare') {
+                ~{{course.price}}€
+              } @else {
+                {{course.price}}€
+              }
+            </span>
+          </div>
+        </div>
+      </a>
     } @empty {
       <p class="empty-state">no hay cursos que coincidan con estos filtros</p>
     }

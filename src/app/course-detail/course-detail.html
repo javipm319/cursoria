@@ -1,34 +1,37 @@
 @if (course(); as c) {
-  <div class="detail">
-    <div class="breadcrumb">
-      <a routerLink="/">explorar</a>
-      <span>›</span>
-      <span>{{c.title}}</span>
+  <div class="overlay" (click)="goBack()">
+    <div class="detail" (click)="$event.stopPropagation()">
+      <button class="close" type="button" (click)="goBack()">✕</button>
+
+      <div class="breadcrumb">
+        <a routerLink="/">explorar</a>
+        <span>›</span>
+        <span>{{c.title}}</span>
+      </div>
+
+      <span class="badge badge-{{c.category}}">{{c.category}}</span>
+
+      <h1>{{c.title}}</h1>
+      <p class="meta">{{c.platform}} · {{c.duration}} de contenido · {{c.level}}</p>
+
+      <div class="stats">
+        <div class="stat">
+          <p class="stat-label">duración</p>
+          <p class="stat-value">{{c.duration}}</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">nivel</p>
+          <p class="stat-value">{{c.level}}</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">precio</p>
+          <p class="stat-value">{{ c.price === 0 ? 'gratis' : c.price + '€' }}</p>
+        </div>
+      </div>
+
+      <p class="description">{{c.description}}</p>
+
+      <a class="cta" [href]="c.url" target="_blank" rel="noopener">ir al curso</a>
     </div>
-
-    <span class="badge badge-{{c.category}}">{{c.category}}</span>
-
-    <h1>{{c.title}}</h1>
-    <p class="meta">{{c.platform}} · {{c.duration}} de contenido · {{c.level}}</p>
-
-    <div class="stats">
-      <div class="stat">
-        <p class="stat-label">duración</p>
-        <p class="stat-value">{{c.duration}}</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">nivel</p>
-        <p class="stat-value">{{c.level}}</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">precio</p>
-        <p class="stat-value">{{ c.price === 0 ? 'gratis' : c.price + '€' }}</p>
-      </div>
-    </div>
-
-    <p class="description">{{c.description}}</p>
-
-    <a class="cta" [href]="c.url" target="_blank" rel="noopener">ir al curso</a>
-    <button class="back" type="button" (click)="goBack()">volver</button>
   </div>
 }
