@@ -6,6 +6,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky; // nuevo
+  top: 0; // nuevo
+  z-index: 50; // nuevo
+  background: vars.$color-bg; // nuevo, necesario para que no se transparente el contenido al hacer scroll por debajo
 }
 
 .brand {

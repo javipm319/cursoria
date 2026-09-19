@@ -3,10 +3,10 @@
     <div class="filter-group">
       <p class="filter-title">categoria</p>
       @for (cat of ['imagen', 'video', '3d', 'ux']; track cat) {
-        <label class="filter-option">
-          <input type="checkbox" [checked]="selectedCategories().includes(cat)" (change)="toggleCategory(cat)">
-          {{cat}}
-        </label>
+      <label class="filter-option">
+        <input type="checkbox" [checked]="selectedCategories().includes(cat)" (change)="toggleCategory(cat)">
+        {{cat}}
+      </label>
       }
     </div>
 
@@ -25,46 +25,47 @@
     <div class="filter-group">
       <p class="filter-title">nivel</p>
       @for (lvl of ['iniciacion', 'avanzado']; track lvl) {
-        <label class="filter-option">
-          <input type="checkbox" [checked]="selectedLevels().includes(lvl)" (change)="toggleLevel(lvl)">
-          {{lvl}}
-        </label>
+      <label class="filter-option">
+        <input type="checkbox" [checked]="selectedLevels().includes(lvl)" (change)="toggleLevel(lvl)">
+        {{lvl}}
+      </label>
       }
     </div>
   </aside>
 
   <div class="course-list">
     @for (course of filteredCourses(); track course.id) {
-      <a class="course-row" [routerLink]="['/explorar/curso', course.id]">
-        <div class="thumb thumb-{{course.category}}">
-          {{ course.category === '3d' ? '3D' : course.category === 'ux' ? 'UX' : (course.category.charAt(0) | uppercase) }}
+    <a class="course-row" [routerLink]="['/explorar/curso', course.id]">
+      <div class="thumb thumb-{{course.category}}">
+        {{ course.category === '3d' ? '3D' : course.category === 'ux' ? 'UX' : (course.category.charAt(0) | uppercase)
+        }}
+      </div>
+      <div class="content">
+        <div class="top-line">
+          <span class="badge badge-{{course.category}}">{{course.category}}</span>
+          <span class="platform">{{course.platform}}</span>
         </div>
-        <div class="content">
-          <div class="top-line">
-            <span class="badge badge-{{course.category}}">{{course.category}}</span>
-            <span class="platform">{{course.platform}}</span>
-          </div>
-          <p class="title">{{course.title}}</p>
-          <p class="description">{{course.description}}</p>
-          <div class="meta">
-            <span>{{course.duration}}</span>
-            <span>·</span>
-            <span>{{course.level}}</span>
-            <span>·</span>
-            <span class="price" [class.free]="course.price === 0">
-              @if (course.price === 0) {
-                gratis
-              } @else if (course.platform === 'Udemy' || course.platform === 'Skillshare') {
-                ~{{course.price}}€
-              } @else {
-                {{course.price}}€
-              }
-            </span>
-          </div>
+        <p class="title">{{course.title}}</p>
+        <p class="description">{{course.description}}</p>
+        <div class="meta">
+          <span>{{course.duration}}</span>
+          <span>·</span>
+          <span>{{course.level}}</span>
+          <span>·</span>
+          <span class="price" [class.free]="course.price === 0">
+            @if (course.price === 0) {
+            gratis
+            } @else if (course.platform === 'Udemy' || course.platform === 'Skillshare') {
+            ~{{course.price}}€
+            } @else {
+            {{course.price}}€
+            }
+          </span>
         </div>
-      </a>
+      </div>
+    </a>
     } @empty {
-      <p class="empty-state">no hay cursos que coincidan con estos filtros</p>
+    <p class="empty-state">no hay cursos que coincidan con estos filtros</p>
     }
   </div>
 </div>
