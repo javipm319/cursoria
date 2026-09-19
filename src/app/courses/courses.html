@@ -35,7 +35,7 @@
 
   <div class="course-list">
     @for (course of filteredCourses(); track course.id) {
-      <a class="course-row" [routerLink]="['/curso', course.id]">
+      <a class="course-row" [routerLink]="['/explorar/curso', course.id]">
         <div class="thumb thumb-{{course.category}}">
           {{ course.category === '3d' ? '3D' : course.category === 'ux' ? 'UX' : (course.category.charAt(0) | uppercase) }}
         </div>
@@ -68,3 +68,5 @@
     }
   </div>
 </div>
+
+<router-outlet></router-outlet>

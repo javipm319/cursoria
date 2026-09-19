@@ -1,0 +1,15 @@
+<div class="hero">
+  <p class="eyebrow">cursos de ia generativa en español</p>
+  <h1>encuentra el curso de IA que te va a hacer despegar</h1>
+  <p class="subtitle">imagen, vídeo, 3D y diseño con IA. cursos reales, curados a mano, sin ruido.</p>
+  <a class="cta" routerLink="/explorar">explorar cursos →</a>
+</div>
+
+<div class="categories">
+  @for (cat of ['imagen', 'video', '3d', 'ux']; track cat) {
+    <a class="category-card" [routerLink]="['/explorar']">
+      <div class="icon icon-{{cat}}"></div>
+      <p>{{cat}}</p>
+    </a>
+  }
+</div>

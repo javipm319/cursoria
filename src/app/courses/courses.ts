@@ -1,12 +1,12 @@
 import { Component, inject, signal, computed } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { Course } from '../course';
 import { CourseData } from '../course-data';
 
 @Component({
   selector: 'app-courses',
-  imports: [RouterLink, UpperCasePipe],
+  imports: [RouterLink, UpperCasePipe, RouterOutlet],
   templateUrl: './courses.html',
   styleUrl: './courses.scss',
 })
